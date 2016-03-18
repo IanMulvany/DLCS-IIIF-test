@@ -1,1 +1,64 @@
-hi there
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple responsive image demo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+
+    .wrapper {
+      background-color: #eee;
+      font-family: sans-serif;
+      padding: 10px;
+    }
+
+    .image {
+      height: auto;
+      width: 100%;
+    }
+
+    .output {
+      word-wrap: break-word;
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="wrapper">
+
+  <dl>
+    <dt>Current image path:</dt>
+    <dd class="output"></dd>
+  </dl>
+
+  <!-- Each srcset attribute takes comma-separated sets of image paths and image widths:
+         srcset="path-to-image [size-of-image-in-px]w, ..."
+       The <img> src attribute contains the path to the default fallback image. -->
+       <picture>
+       	<source media="(min-width: 800px)"  srcset="https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!800,800/0/default.jpg 800w, https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!400,400/0/default.jpg 400w" />
+       	<source media="(min-width: 600px)"  srcset="https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!214,214/0/default.jpg 214w, https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!100,100/0/default.jpg 100w, https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!50,50/0/default.jpg 50w" />
+       	<img src="1.png" alt="" class="image" />
+       </picture>
+</div>
+
+ <script>
+
+   // Displays the path of the currently displayed image.
+    (function(window) {
+
+      var image = document.querySelector('.image');
+      var output = document.querySelector('.output');
+
+      function outputImagePath() {
+        output.innerHTML = image.currentSrc;
+      }
+
+      window.addEventListener('resize', outputImagePath, false);
+      outputImagePath();
+    }(window));
+
+  </script>
+
+</body>
+</html>
