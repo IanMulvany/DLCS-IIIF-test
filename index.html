@@ -18,15 +18,16 @@
     }
 
     .output {
+      font-weight: bold;
       word-wrap: break-word;
     }
 
   </style>
 </head>
 <body>
-
+<h1>IIIF responsive image demo</h1>
 <div class="wrapper">
-
+  <p>Resize browser window to see different images loading. (Note, browsers without <a href="http://caniuse.com/#search=picture">support for the <code>&lt;picture&gt;</code> element</a> will just get the fallback version of the image. This can be polyfilled if required using e.g. <a href="https://github.com/scottjehl/picturefill">picturefill</a>.)</p>
   <dl>
     <dt>Current image path:</dt>
     <dd class="output"></dd>
@@ -34,31 +35,22 @@
 
   <!-- Each srcset attribute takes comma-separated sets of image paths and image widths:
          srcset="path-to-image [size-of-image-in-px]w, ..."
-       The <img> src attribute contains the path to the default fallback image. -->
-       <picture>
-       	<source media="(min-width: 800px)"  srcset="https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!800,800/0/default.jpg 800w, https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!400,400/0/default.jpg 400w" />
-       	<source media="(min-width: 600px)"  srcset="https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!214,214/0/default.jpg 214w, https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!100,100/0/default.jpg 100w, https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!50,50/0/default.jpg 50w" />
-       	<img src="1.png" alt="" class="image" />
-       </picture>
+       The <img> src attribute contains the path to the default fallback image (used when <picture> not supported). -->
+  <picture>
+    <source media="(min-width: 800px)"  srcset="https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!1600,1600/0/default.jpg 1600w, https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!800,800/0/default.jpg 800w" />
+    <source media="(min-width: 500px)"  srcset="https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/100,200,600,700/!1000,1000/0/default.jpg 1000w, https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/100,200,600,700/!500,500/0/default.jpg 500w, https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/100,200,600,700/!200,200/0/default.jpg 200w" />
+      <img src="https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/60,100,350,350/!400,400/0/default.jpg" alt="Image of a thing" class="image" />
+  </picture>
 </div>
 
  <script>
-
    // Displays the path of the currently displayed image.
     (function(window) {
-
-      var image = document.querySelector('.image');
       var output = document.querySelector('.output');
-
-      function outputImagePath() {
-        output.innerHTML = image.currentSrc;
-      }
-
-      window.addEventListener('resize', outputImagePath, false);
-      outputImagePath();
+      document.querySelector('.image').addEventListener('load', function (e) {
+        output.innerHTML = e.target.currentSrc;
+      }, false);
     }(window));
-
   </script>
-
 </body>
 </html>
