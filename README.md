@@ -140,7 +140,7 @@ The documentation was not 100% clear on this, but I got some assistance through 
 	data = {"name":"test_create", "id": "2"}
 	r = requests.put(space_creation_endpoint, auth = (creds.KEY, creds.SECRET), data=json.dumps(data))
 
-The key thing here is that the payload needs to include a name as well as the id of the space.
+The key thing here is that the payload needs to include a name as well as the id of the space. The documentation was not very clear on this but I got assistance in the slack channel.
 
 
 # Accessing a version of the served image from the DLCS.
@@ -155,9 +155,7 @@ We can modify those parameters to ask for some alternative versions of the image
 
 ## smaller version of the image
 
-This will give you a smaller version of the image.
-
-[https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!200,200/0/default.jpg](), and you should see:
+[https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/full/!200,200/0/default.jpg](), will give you a smaller version of the image:
 
 ![alt text][image-api-demo]
 
@@ -165,9 +163,14 @@ This will give you a smaller version of the image.
 
 ## smaller version of the image, cropped to a specific region
 
+A smaller version cropped to a specific region [https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/0,15,125,200/!100,200/0/default.jpg](): 
+
+
 ![alt text][image-api-demo2]
 
 [image-api-demo2]: https://dlcs.io/iiif-img/9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25/0,15,125,200/!100,200/0/default.jpg
+
+
 
 ## smaller version of the image, cropped to a specific region, and rotated by 90<sup>o</sup> and mirrored.
 
@@ -218,10 +221,10 @@ There is an demo version of the viewer available at `, and with this demo you ca
 The DLCS portal page for an image generates a manifest for that image, so for example for the following image ....
 
 
-I've had hardly any time to look into this API, but Wellcome with digirati have built the universal viewer that can consume
+I've had hardly any time to look into this API, but Wellcome with [Digirati](http://digirati.com) have built the universal viewer that can consume
 
 From the portal I can browse the images that I have uploaded into the DLCS. For example one image is available at [https://portal.dlcs.io/Image.aspx?id=9/1/6dbd6a99-9837-4252-a37f-0367c6fbbe25](), which gives me the portal view to that image. The portal provides a link to a IIIF manifest file, just for that image. In this case the manifest is available from [http://dlcs.io/iiif-manifest/elife/neuroscience/6dbd6a99-9837-4252-a37f-0367c6fbbe25](). That manifest can be plugged in to an instance of the Universal viewer, and the DLCS portal provides a handy link for doing this. You can now view the deep zoom universal view on this image at [http://universalviewer.io/?manifest=http%3A%2F%2Fdlcs.io%2Fiiif-manifest%2Felife%2Fneuroscience%2F6dbd6a99-9837-4252-a37f-0367c6fbbe25#?c=0&m=0&s=0&cv=0&z=-0.7756%2C-0.205%2C2.1109%2C1.392](). I also quite like the non-full screen view of the universal viewer, and you can plug in your own manifest files, or browse some examples, at [http://universalviewer.io/examples/]().
 
 # Named queries
 
-# Summary of impressions of the DLCS and IIIF 
+# Summary of impressions of the DLCS and IIIF
